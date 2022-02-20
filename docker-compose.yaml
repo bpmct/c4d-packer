@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  coder:
+    hostname: coder
+    image: codercom/coder:1.28.0
+    container_name: coder
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.coder:/var/run/coder
+    ports:
+      - "172.17.0.1:7080:7080"
+    environment:
+      - DEVURL_HOST=*.coder1.do.bpmct.net
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ~/.caddy:/data # Optional
+    depends_on:
+      - coder

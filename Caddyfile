@@ -1,0 +1,10 @@
+{
+    email me@bpmct.net
+}
+
+:443 {
+    reverse_proxy coder:7080
+    tls {
+        on_demand
+    }
+}
