@@ -11,8 +11,8 @@ services:
       - ~/.coder:/var/run/coder
     ports:
       - "172.17.0.1:7080:7080"
-    environment:
-      - DEVURL_HOST=*.coder1.do.bpmct.net
+    # environment:
+    #   - DEVURL_HOST=*.coder1.do.bpmct.net
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped

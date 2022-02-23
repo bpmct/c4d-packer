@@ -1,5 +1,9 @@
 {
-    email me@bpmct.net
+    email email@example.com
+}
+
+:80 {
+    reverse_proxy coder:7080
 }
 
 :443 {
