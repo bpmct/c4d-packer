@@ -11,9 +11,12 @@ services:
       - ~/.coder:/var/run/coder
     ports:
       - "172.17.0.1:7080:7080"
-    # Uncomment to enable dev URLs:
-    # environment:
-    #   - DEVURL_HOST=*.coder.example.com
+    environment:
+      # INITIAL_PASSWORD is defined on first run, then
+      # empty. Set this manually to reset the password.
+      - SUPER_ADMIN_PASSWORD=${INITIAL_PASSWORD}
+      # Uncomment to enable dev URLs:
+      #   - DEVURL_HOST=*.coder.example.com
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
