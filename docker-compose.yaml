@@ -11,8 +11,9 @@ services:
       - ~/.coder:/var/run/coder
     ports:
       - "172.17.0.1:7080:7080"
+    # Uncomment to enable dev URLs:
     # environment:
-    #   - DEVURL_HOST=*.coder1.do.bpmct.net
+    #   - DEVURL_HOST=*.coder.example.com
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
@@ -21,6 +22,6 @@ services:
       - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ~/.caddy:/data # Optional
+      - ~/.caddy:/data
     depends_on:
       - coder
