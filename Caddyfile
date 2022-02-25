@@ -2,7 +2,7 @@ https:// {
     reverse_proxy coder:7080
     tls {
         issuer acme {
-          email test@example.com
+          email your-email@domain.com
         }
         # comment to disable fallback to self-signed certificates
         issuer internal
