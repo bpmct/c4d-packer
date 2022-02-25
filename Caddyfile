@@ -1,11 +1,13 @@
 {
+    # Set this to your email for LetsEncrypt Cerfificates
     email email@example.com
 }
 
+# Remove this to disable HTTP access
 :80 {
     reverse_proxy coder:7080
 }
-
+ 
 :443 {
     reverse_proxy coder:7080
     tls {
