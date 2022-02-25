@@ -4,8 +4,13 @@ https:// {
         issuer acme {
           email your-email@domain.com
         }
-        # comment to disable fallback to self-signed certificates
+        # remove the following line to disable
+        # fallback to self-signed certificates
         issuer internal
+
+        # this generates certificates on demand 
+        # (including subdomains) without requiring
+        # a certificate signing request
         on_demand
     }
 }
