@@ -1,10 +1,10 @@
 {
   "variables": {
     "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}",
-    "image_name": "coder-20-04-{{timestamp}}",
+    "image_name": "coder-20-04-{{env `RELEASE_EXTRA`}}",
     "apt_packages": "apt-transport-https ca-certificates curl jq linux-image-extra-virtual software-properties-common ",
     "application_name": "Coder",
-    "application_version": "1.28.0",
+    "application_version": "1.28.0{{env `RELEASE_EXTRA`}}",
     "docker_compose_version": "1.29.2"
   },
   "sensitive-variables": ["do_api_token"],
