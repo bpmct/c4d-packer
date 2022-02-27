@@ -13,7 +13,7 @@ jobs:
 
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=release_chat::$(printf ${{ github.event.release.name }} | tail -c 1)"
+        run: echo "::set-output name=release_char::$(printf ${{ github.event.release.name }} | tail -c 1)"
 
       # validate templates
       - name: Validate Template
