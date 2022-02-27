@@ -1,7 +1,7 @@
 on:
   push:
     paths-ignore:
-      - "./README"
+      - "./README.md"
       - "./.vscode/**"
 jobs:
   packer:
