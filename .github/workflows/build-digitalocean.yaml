@@ -15,10 +15,10 @@ jobs:
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       # fix backwards incompatibilities in template
-      - name: Fix Template
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: fix
+      # - name: Fix Template
+      #   uses: hashicorp/packer-github-actions@master
+      #   with:
+      #     command: fix
 
       # validate templates
       - name: Validate Template
