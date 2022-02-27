@@ -4,6 +4,8 @@ This packages a VM image with Coder and Caddy for LetsEncrypt/certificate manage
 
 By default, Coder will run on your Droplet's public IPv4 address with a self-signed certificate: [https://your_droplet_public_ipv4/login](https://your_droplet_public_ipv4/login)
 
+Log in with the following username and password: `admin:coder1235`. Upon logging in, you will be prompted to change your password. 
+
 ## Add a domain (optional)
 
 1. Point your DNS records (`coder.yourdomain.com` `*.coder.yourdomain.com`) to the Droplet's public IPv4 address.
