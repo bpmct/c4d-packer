@@ -1,9 +1,0 @@
-# TODO
-
-on:
-  release:
-
-jobs:
-  packer:
-    runs-on: ubuntu-latest
-    name: packer

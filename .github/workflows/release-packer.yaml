@@ -1,0 +1,36 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  packer_release:
+    runs-on: ubuntu-latest
+    name: packer
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=release_chat::$(printf ${{ github.event.release.name }} | tail -c 1)"
+
+      # validate templates
+      - name: Validate Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          arguments: -syntax-only
+          target: template.json
+
+      # build artifact
+      - name: Build Artifact
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: build
+          arguments: "-color=false -on-error=abort"
+          target: template.json
+        env:
+          DIGITALOCEAN_API_TOKEN: ${{ secrets.DIGITALOCEAN_API_TOKEN }}
+          RELEASE_EXTRA: "${{ steps.vars.outputs.release_char }}"
+          PACKER_LOG: 1
