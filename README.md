@@ -7,7 +7,7 @@ By default, Coder will run on your Droplet's public IPv4 address with a self-sig
 ## Add a domain (optional)
 
 1. Point your DNS records (`coder.yourdomain.com` `*.coder.yourdomain.com`) to the Droplet's public IPv4 address.
-2. Navigate to the domain, Caddy should automatically provision a TLS certificate. (We recommend using an incognito window to avoid initial caching
+2. Navigate to the domain, Caddy should automatically provision a TLS certificate. (we recommend using an incognito window in the beginning to initial caching issues)
 
 ## Enable [dev URLs](https://coder.com/docs/coder/latest/workspaces/devurls) (optional)
 
