@@ -88,7 +88,7 @@ source "digitalocean" "digitalocean1" {
   region        = "nyc3"
   size          = "s-1vcpu-1gb"
   snapshot_name = "${var.image_name}"
-  ssh_username  = "ubuntu"
+  ssh_username  = "root"
 }
 
 # a build block invokes sources and runs provisioning steps on them. The
