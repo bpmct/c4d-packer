@@ -3,7 +3,7 @@ version: "3.7"
 services:
   coder:
     hostname: coder
-    image: codercom/coder:1.28.1
+    image: codercom/coder:1.28.2
     restart: unless-stopped
     container_name: coder
     volumes:

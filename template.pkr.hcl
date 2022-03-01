@@ -5,7 +5,7 @@ variable "application_name" {
 
 variable "application_version" {
   type    = string
-  default = "1.28.0${env("RELEASE_EXTRA")}"
+  default = "1.28.2${env("RELEASE_EXTRA")}"
 }
 
 variable "apt_packages" {
@@ -72,6 +72,7 @@ data "amazon-ami" "aws1" {
 source "amazon-ebs" "aws1" {
   access_key    = "${var.aws_access_key}"
   ami_name      = "${var.image_name}"
+  ami_description = "Coder ${var.application_name} ${var.application_version}: Provision remote dev environments with support for VS Code, JetBrains, SSH, Jupyter, and more. "
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   secret_key    = "${var.aws_secret_key}"
