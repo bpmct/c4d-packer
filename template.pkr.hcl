@@ -51,12 +51,6 @@ variable "image_name" {
   default = "coder-20-04-${env("RELEASE_EXTRA")}"
 }
 
-# The amazon-ami data block is generated from your amazon builder source_ami_filter; a data
-# from this block can be referenced in source and locals blocks.
-# Read the documentation for data blocks here:
-# https://www.packer.io/docs/templates/hcl_templates/blocks/data
-# Read the documentation for the Amazon AMI Data Source here:
-# https://www.packer.io/docs/datasources/amazon/ami
 data "amazon-ami" "aws1" {
   access_key = "${var.aws_access_key}"
   filters = {
@@ -70,10 +64,6 @@ data "amazon-ami" "aws1" {
   secret_key  = "${var.aws_secret_key}"
 }
 
-# source blocks are generated from your builders; a source can be referenced in
-# build blocks. A build block runs provisioner and post-processors on a
-# source. Read the documentation for source blocks here:
-# https://www.packer.io/docs/templates/hcl_templates/blocks/source
 source "amazon-ebs" "aws1" {
   access_key    = "${var.aws_access_key}"
   ami_name      = "${var.image_name}"
@@ -98,9 +88,6 @@ source "digitalocean" "digitalocean1" {
   ssh_username  = "root"
 }
 
-# a build block invokes sources and runs provisioning steps on them. The
-# documentation for build blocks can be found here:
-# https://www.packer.io/docs/templates/hcl_templates/blocks/build
 build {
   sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1"]
 
