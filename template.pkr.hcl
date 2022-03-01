@@ -78,7 +78,7 @@ source "amazon-ebs" "aws1" {
   access_key    = "${var.aws_access_key}"
   ami_name      = "${var.image_name}"
   # ami_groups    = ["${var.ami_groups}"]
-  ami_description = "Coder ${var.application_name} ${var.application_version}: Provision remote dev environments with support for VS Code, JetBrains, SSH, Jupyter, and more. "
+  ami_description = "${var.application_name} ${var.application_version}: Provision remote dev environments with support for VS Code, JetBrains, SSH, Jupyter, and more. "
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   secret_key    = "${var.aws_secret_key}"
