@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.coder:/var/run/coder
     ports:
-      - "172.17.0.1:7080:7080"
+      - "7080:7080"
     environment:
       # INITIAL_PASSWORD is defined on first run, then
       # empty. Set this manually to reset the password.
