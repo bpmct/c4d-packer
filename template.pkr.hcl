@@ -77,6 +77,9 @@ source "amazon-ebs" "aws1" {
   secret_key    = "${var.aws_secret_key}"
   source_ami    = "${data.amazon-ami.aws1.id}"
   ssh_username  = "ubuntu"
+  tags          = {
+    Name = "${var.application_name}"
+  }
 }
 
 source "digitalocean" "digitalocean1" {
