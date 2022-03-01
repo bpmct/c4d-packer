@@ -32,5 +32,8 @@ jobs:
           target: template.pkr.hcl
         env:
           DIGITALOCEAN_API_TOKEN: ${{ secrets.DIGITALOCEAN_API_TOKEN }}
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
           RELEASE_EXTRA: "${{ steps.vars.outputs.release_char }}"
           PACKER_LOG: 1
