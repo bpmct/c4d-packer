@@ -7,6 +7,9 @@ jobs:
   packer:
     runs-on: ubuntu-latest
     name: packer
+    permissions:
+      contents: "read"
+      id-token: "write"
 
     steps:
       - name: Checkout Repository
