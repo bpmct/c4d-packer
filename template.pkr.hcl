@@ -108,7 +108,7 @@ source "digitalocean" "digitalocean1" {
   api_token     = "${var.do_api_token}"
   image         = "ubuntu-20-04-x64"
   region        = "nyc3"
-  size          = "c2-2vcpu-4gb"
+  size          = "s-2vcpu-4gb"
   snapshot_name = "${var.image_name}"
   ssh_username  = "root"
 }
