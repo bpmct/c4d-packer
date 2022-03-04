@@ -134,7 +134,7 @@ source "googlecompute" "gcp1" {
   source_image_family = "ubuntu-2004-lts"
   ssh_username = "root"
   zone = "us-central1-a"
-  account_file = "${var.google_compute_account_file}"
+  access_token = "${var.google_compute_access_token}"
   image_name = "${var.image_name}"
 }
 

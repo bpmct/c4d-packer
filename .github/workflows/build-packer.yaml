@@ -26,6 +26,7 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WI_PROVIDER }}
           create_credentials_file: true
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          token_format: "access_token"
 
       - name: Validate Template
         uses: hashicorp/packer-github-actions@master
