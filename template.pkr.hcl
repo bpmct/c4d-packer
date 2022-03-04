@@ -130,6 +130,7 @@ source "googlecompute" "gcp1" {
   zone = "us-central1-a"
   access_token = "ya29.A0ARrdaM-tMdjYQaAIfHRFpl6hGyyvKtaUcL6lkJqmNvAfxMsYosJCTLijyjX0aFZF9AsJswR_yz9m2-dbJ_edN4toDVSoxLz6StfXLZHHQD5t3J58jg-4jr_GvF1zez3L2A6sDv6LeTMhApUGgcOL2vvh1EvG_jyTn2Aa"
   account_file = "${var.google_compute_access_token}"
+  image_name = "${var.image_name}"
 }
 
 build {
