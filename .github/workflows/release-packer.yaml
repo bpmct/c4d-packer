@@ -23,9 +23,9 @@ jobs:
         uses: "google-github-actions/auth@v0"
         with:
           workload_identity_provider: ${{ secrets.GCP_WI_PROVIDER }}
+          create_credentials_file: true
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
           token_format: "access_token"
-          access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
 
       - name: Validate Template
         uses: hashicorp/packer-github-actions@master
@@ -51,7 +51,8 @@ jobs:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          GCP_ACCESS_TOKEN: ${{ steps.gcloud.outputs.access_token }}"
+          VULTR_API_KEY: ${{ secrets.VULTR_API_KEY }}
+          GCP_ACCESS_TOKEN: ${{ steps.gcloud.outputs.access_token }}
           AWS_AMI_GROUPS: "all"
           RELEASE_EXTRA: "${{ steps.vars.outputs.release_char }}"
           PACKER_LOG: 1
