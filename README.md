@@ -1,10 +1,19 @@
-# one-click Coder VMs
+# Coder VM images
 
-This packages a VM image with Coder and Caddy for LetsEncrypt/certificate management.
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://marketplace.digitalocean.com/apps/coder)
 
-By default, Coder will run on your Droplet's public IPv4 address with a self-signed certificate: [https://your_droplet_public_ipv4/login](https://your_droplet_public_ipv4/login)
+VM images with [Coder](https://coder.com/docs) + Caddy for automatic TLS.
 
-Log in with the following username and password: `admin:coder1235`. Upon logging in, you will be prompted to change your password. 
+![Coder workspaces](https://www.datocms-assets.com/19109/1643078657-group-2.png)
+
+By default, Coder will run on your public IPv4 address with a self-signed certificate: [https://your_droplet_public_ipv4/login](https://your_droplet_public_ipv4/login).
+
+Use the credentials below to login to your Coder workspace. Upon logging in, you will be prompted to change your password.
+
+```text
+Username: admin
+Password: coder12345
+```
 
 ## Add a domain (optional)
 
@@ -13,7 +22,7 @@ Log in with the following username and password: `admin:coder1235`. Upon logging
 
 ## Enable [dev URLs](https://coder.com/docs/coder/latest/workspaces/devurls) (optional)
 
-1. SSH into your Droplet: `ssh root@your_droplet_public_ipv4`
+1. SSH into your VM: `ssh root@your_droplet_public_ipv4`
 
 2. Follow instructions to modify `coder/docker-compose.yaml` and set
 
@@ -63,4 +72,4 @@ Stay tuned for a [future release](https://github.com/bpmct/c4d-packer/releases) 
    cd $HOME/coder && docker-compose restart
    ```
 
-Stay tuned for a [future release](https://github.com/bpmct/c4d-packer/releases) with built-in support for DigitalOcean managed DBs.
+Stay tuned for a [future release](https://github.com/bpmct/c4d-packer/releases) more support for service-provided Postgres databases.
