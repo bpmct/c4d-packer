@@ -22,15 +22,15 @@ session_token="$(
 )"
 
 # change Docker provider access URL to support CVM workspaces
-curl --insecure  \
+curl --verbose --insecure  \
     -i -H "Session-Token: $session_token" \
     -X PUT 'https://127.0.0.1/api/private/workspace-providers/docker' \
     --data-raw '{"name":"Docker","org_whitelist":["default"],"access_url":"http://172.17.0.1:7080","docker":{"api_uri":"unix:///var/run/docker.sock"}}'
 
 # set temporary password instead of the default one
 # this will also show the license prompt during initial log in
-curl --insecure \
+curl --verbose --insecure \
     -i -H "Content-Type: application/json" \
     -H "Session-Token: $session_token" \
-    -X PATCH "https://127.0.0.1/api/v0/users/admin" \
+    -X PATCH "https://127.0.0.1/api/v0/users/me" \
     --data '{"old_password":"temp_coder12345","password":"coder12345", "temporary_password": true}'
