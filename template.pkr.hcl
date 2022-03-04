@@ -4,6 +4,10 @@ packer {
       version = ">= 2.4.4"
       source = "github.com/vultr/vultr"
     }
+    googlecompute = {
+      version = ">= 0.0.1"
+      source = "github.com/hashicorp/googlecompute"
+    }
   }
 }
 
@@ -48,6 +52,12 @@ variable "do_api_token" {
 variable "vultr_api_key" {
   type    = string
   default = "${env("VULTR_API_KEY")}"
+  sensitive = true
+}
+
+variable "google_compute_access_token" {
+  type    = string
+  default = "${env("GCP_ACCESS_TOKEN")}"
   sensitive = true
 }
 
@@ -113,8 +123,17 @@ source "vultr" "vultr1" {
   ssh_username         = "root"
 }
 
+source "googlecompute" "gcp1" {
+  project_id = "coder-devrel"
+  source_image_family = "ubuntu-2004-lts"
+  ssh_username = "root"
+  zone = "us-central1-a"
+  access_token = "ya29.A0ARrdaM-tMdjYQaAIfHRFpl6hGyyvKtaUcL6lkJqmNvAfxMsYosJCTLijyjX0aFZF9AsJswR_yz9m2-dbJ_edN4toDVSoxLz6StfXLZHHQD5t3J58jg-4jr_GvF1zez3L2A6sDv6LeTMhApUGgcOL2vvh1EvG_jyTn2Aa"
+  account_file = "${var.google_compute_access_token}"
+}
+
 build {
-  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1"]
+  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1", "googlecompute.gcp1"]
 
   provisioner "shell" {
     inline = ["cloud-init status --wait"]

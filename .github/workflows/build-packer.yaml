@@ -16,6 +16,13 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
+      # set up GCP service account
+      - name: Google Cloud Setup
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
       - name: Validate Template
         uses: hashicorp/packer-github-actions@master
         with:
