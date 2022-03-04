@@ -16,7 +16,6 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
-      # validate templates
       - name: Validate Template
         uses: hashicorp/packer-github-actions@master
         with:
@@ -24,7 +23,12 @@ jobs:
           arguments: -syntax-only
           target: template.pkr.hcl
 
-      # build artifact
+      - name: Install plugins
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: init
+          target: template.pkr.hcl
+
       - name: Build Artifact
         uses: hashicorp/packer-github-actions@master
         with:

@@ -4,17 +4,16 @@ cd $HOME
 git clone https://github.com/bpmct/c4d-packer $HOME/coder/
 cd $HOME/coder && INITIAL_PASSWORD=temp_coder12345 docker-compose up -d
 
-# wait for Coder to be ready
-until [ "`docker inspect -f {{.State.Running}} $(docker-compose ps -q coder)`"=="true" ]; do
-    sleep 0.2;
-done;
+# health check: wait for Coder to start running
+bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w ''%{http_code}'' https://127.0.0.1/healthz)" != "201" ]]; do sleep 3; done'
 
-# Log in using the default user and password
+# log in using the default user and password
 output=$(curl 'https://127.0.0.1/auth/basic/login' \
   --data-raw '{"email":"admin","password":"temp_coder12345"}' \
   --compressed \
   --insecure)
 
+# grab session token
 session_token="$(
     echo "$output" | \
     grep "session_token" | \
@@ -29,7 +28,7 @@ curl --insecure  \
     --data-raw '{"name":"Docker","org_whitelist":["default"],"access_url":"http://172.17.0.1:7080","docker":{"api_uri":"unix:///var/run/docker.sock"}}'
 
 # set temporary password instead of the default one
-# this will also show the license prompt during intiial log in
+# this will also show the license prompt during initial log in
 curl --insecure \
     -i -H "Content-Type: application/json" \
     -H "Session-Token: $session_token" \

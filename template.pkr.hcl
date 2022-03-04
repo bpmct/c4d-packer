@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    vultr = {
+      version = ">= 2.4.4"
+      source = "github.com/vultr/vultr"
+    }
+  }
+}
+
 variable "application_name" {
   type    = string
   default = "Coder"
@@ -33,6 +42,12 @@ variable "aws_secret_key" {
 variable "do_api_token" {
   type      = string
   default   = "${env("DIGITALOCEAN_API_TOKEN")}"
+  sensitive = true
+}
+
+variable "vultr_api_key" {
+  type    = string
+  default = "${env("VULTR_API_KEY")}"
   sensitive = true
 }
 
@@ -88,8 +103,18 @@ source "digitalocean" "digitalocean1" {
   ssh_username  = "root"
 }
 
+source "vultr" "vultr1" {
+  api_key              = "${var.vultr_api_key}"
+  os_id                = "387"
+  plan_id              = "vhf-1c-1gb"
+  region_id            = "atl"
+  snapshot_description = "${var.image_name}"
+  state_timeout        = "10m"
+  ssh_username         = "root"
+}
+
 build {
-  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1"]
+  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1"]
 
   provisioner "shell" {
     inline = ["cloud-init status --wait"]
