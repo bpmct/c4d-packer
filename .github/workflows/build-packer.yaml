@@ -53,6 +53,5 @@ jobs:
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           GCP_ACCESS_TOKEN: ${{ steps.gcloud.outputs.access_token }}
-          GCP_ACCOUNT_FILE: ${{ steps.gcloud.outputs.credentials_file_path }}
           RELEASE_EXTRA: "${{ steps.vars.outputs.sha_short }}"
           PACKER_LOG: 1

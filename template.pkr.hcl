@@ -61,12 +61,6 @@ variable "google_compute_access_token" {
   sensitive = true
 }
 
-variable "google_compute_account_file" {
-  type    = string
-  default = "${env("GCP_ACCOUNT_FILE")}"
-  sensitive = true
-}
-
 variable "docker_compose_version" {
   type    = string
   default = "1.29.2"
