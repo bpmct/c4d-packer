@@ -134,7 +134,7 @@ source "googlecompute" "gcp1" {
 }
 
 build {
-  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1", "googlecompute.gcp1"]
+  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1"]
 
   provisioner "shell" {
     inline = ["cloud-init status --wait"]
