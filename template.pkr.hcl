@@ -61,6 +61,12 @@ variable "google_compute_access_token" {
   sensitive = true
 }
 
+variable "google_compute_account_file" {
+  type    = string
+  default = "${env("GCP_ACCESS_TOKEN")}"
+  sensitive = true
+}
+
 variable "docker_compose_version" {
   type    = string
   default = "1.29.2"
@@ -128,12 +134,12 @@ source "googlecompute" "gcp1" {
   source_image_family = "ubuntu-2004-lts"
   ssh_username = "root"
   zone = "us-central1-a"
-  access_token = "${var.google_compute_access_token}"
+  account_file = "${var.google_compute_account_file}"
   image_name = "${var.image_name}"
 }
 
 build {
-  sources = ["source.amazon-ebs.aws1", "source.digitalocean.digitalocean1", "source.vultr.vultr1", "source.googlecompute.gcp1"]
+  sources = ["source.googlecompute.gcp1"]
 
   provisioner "shell" {
     inline = ["cloud-init status --wait"]
