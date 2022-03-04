@@ -63,7 +63,7 @@ variable "google_compute_access_token" {
 
 variable "google_compute_account_file" {
   type    = string
-  default = "${env("GCP_ACCESS_TOKEN")}"
+  default = "${env("GCP_ACCOUNT_FILE")}"
   sensitive = true
 }
 
