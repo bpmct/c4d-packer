@@ -5,7 +5,7 @@ git clone https://github.com/bpmct/c4d-packer $HOME/coder/
 cd $HOME/coder && INITIAL_PASSWORD=temp_coder12345 docker-compose up -d
 
 # health check: wait for Coder to start running
-bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w ''%{http_code}'' https://127.0.0.1/healthz)" != "201" ]]; do sleep 3; done'
+bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w ''%{http_code}'' https://127.0.0.1/healthz)" != "200" ]]; do sleep 3; done'
 
 # log in using the default user and password
 output=$(curl 'https://127.0.0.1/auth/basic/login' \
