@@ -43,7 +43,7 @@ curl --verbose --insecure \
 curl --verbose --insecure  \
     -i -H "Session-Token: $session_token" \
     -X PUT 'https://127.0.0.1/api/private/workspace-providers/docker' \
-    --data-raw '{"name":"Docker","org_whitelist":["default"],"access_url":"http://172.17.0.1:7080","docker":{"api_uri":"unix:///var/run/docker.sock"}}'
+    --data-raw '{"name":"Docker","org_whitelist":["default"],"access_url":"http://host.docker.internal:7080","docker":{"api_uri":"unix:///var/run/docker.sock"}}'
 
 # revert to "temporary" password instead of the default one
 # this is also necessary to show the setup/generate license prompt
